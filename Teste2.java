@@ -1,43 +1,57 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Scanner;
-
 
 public class Teste2 {
 
-	public Teste2(){
-		int t;
-		Scanner sc = new Scanner(System.in).useDelimiter(" ");
+	private ArrayList<Integer> iarr;
+	public Teste2() throws IOException {
 		
 		try {
-			t = sc.nextInt();
-			ArrayList<Integer> array1 = new ArrayList<Integer>();
-				for (int i =0; i< t; i++){
-					
-					while(sc.hasNextInt()){
-							int x = sc.nextInt();
-							if(!array1.contains(x)){	
-								array1.add(x);		
-						}
-					}
-				
-					Collections.sort(array1);
-				}
-				
+			int t;
+			
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			t = Integer.parseInt(br.readLine());
+			String s = br.readLine();
+			
+			iarr = this.gerarArrayInt(s, t);
+	
+			
+			
+		
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	
-	
-	public static void main(String[] args) {
-		{
-		// TODO Auto-generated method stub
-			new Teste2();
-		}	
+	public ArrayList<Integer> gerarArrayInt(String s, int tamanho){
 		
+		int t = tamanho;
+		String[] sarr = new String[t];
+        iarr = new ArrayList<Integer>();
+		String s1 = s;
+		
+		for (int i = 0; i < t; i++) {
+			sarr = s1.split("\\s+");
+		}
+		Arrays.sort(sarr);
+		for(String str: sarr){
+			if(!iarr.contains(Integer.parseInt(str.toString()))){
+				iarr.add(Integer.parseInt(str.toString()));
+			}
+		}
+		
+		return iarr;
+	}
+	
+	public static void main(String[] args) throws IOException {
+		{
+			// TODO Auto-generated method stub
+			new Teste2();
+		}
+
 	}
 }
